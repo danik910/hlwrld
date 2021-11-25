@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		834F1362274ACD09005B2EA4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834F1361274ACD09005B2EA4 /* main.cpp */; };
-		834F136A274FF9A0005B2EA4 /* summa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834F1368274FF9A0005B2EA4 /* summa.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +25,6 @@
 /* Begin PBXFileReference section */
 		834F135E274ACD09005B2EA4 /* hlwrld */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hlwrld; sourceTree = BUILT_PRODUCTS_DIR; };
 		834F1361274ACD09005B2EA4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		834F1368274FF9A0005B2EA4 /* summa.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = summa.cpp; path = hlwrld/summa.cpp; sourceTree = "<group>"; };
-		834F1369274FF9A0005B2EA4 /* summa.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = summa.hpp; path = hlwrld/summa.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,8 +41,6 @@
 		834F1355274ACD08005B2EA4 = {
 			isa = PBXGroup;
 			children = (
-				834F1368274FF9A0005B2EA4 /* summa.cpp */,
-				834F1369274FF9A0005B2EA4 /* summa.hpp */,
 				834F1360274ACD09005B2EA4 /* hlwrld */,
 				834F135F274ACD09005B2EA4 /* Products */,
 			);
@@ -125,7 +120,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				834F1362274ACD09005B2EA4 /* main.cpp in Sources */,
-				834F136A274FF9A0005B2EA4 /* summa.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
