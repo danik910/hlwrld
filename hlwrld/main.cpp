@@ -14,16 +14,20 @@
 using namespace std;
 
 //commit
+
+int Factorial(int n) {
+    int f=1;
+    if (n>0) {
+        for (int i=2;i<=n;++i) {
+            f *= i;
+        }
+        return f;
+    }
+    return 1;
+}
+
 int main(int argc, const char * argv[]) {
     int n;
-    vector<bool> result;
     cin >> n;
-    while (n>0) {
-        result.push_back(n % 2);
-        n = n/2;
-    }
-    for (int r=result.size();r>0;--r) {
-        cout << result[r-1];
-    }
-    cout<<endl;
+    cout << Factorial(n);
 }
