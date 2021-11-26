@@ -16,7 +16,8 @@ using namespace std;
 //using namespace std::chrono;
 
 //commit
-void Reverse(vector<int>& v) {
+vector<int> Reversed(const vector<int>& v1) {
+    vector<int> v=v1;
     int len=v.size();
     int median=len/2;
     for (int i=0;i<median;++i) {
@@ -24,13 +25,17 @@ void Reverse(vector<int>& v) {
         v[i]=v[len-i-1];
         v[len-i-1]=tmp;
     }
-
+    return v;
 }
 
 
 int main(int argc, const char * argv[]) {
     vector<int> numbers = {1, 5, 3, 4, 2};
-    Reverse(numbers);
+    vector<int> numbers1=Reversed(numbers);
+    for (auto n:numbers1) {
+        cout << n << " ";
+    }
+    cout<< endl;
     for (auto n:numbers) {
         cout << n << " ";
     }
