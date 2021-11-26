@@ -15,23 +15,13 @@ using namespace std;
 
 //commit
 int main(int argc, const char * argv[]) {
-    string x;
-    cin >> x;
-    int i=0, j=0;
-    for (auto X:x) {
-        if (X=='f') {
-            if (++i==2) {
-                cout << j <<endl;
+    int a,b;
+    cin >> a >> b;
+        for (int i=a*(a<b)+b*(a>=b);i>=1;--i) {
+            if ((b % i==0) && (a % i==0)) {
+                cout << i << endl;
+                break;
             }
-            
         }
-        ++j;
-    }
-    if (i==0) {
-        cout << -2 <<endl;
-    } else if (i==1) {
-        cout << -1 <<endl;
-    }
-    
     return 0;
 }
