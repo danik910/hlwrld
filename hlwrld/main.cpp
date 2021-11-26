@@ -15,14 +15,12 @@ using namespace std;
 
 //commit
 int main(int argc, const char * argv[]) {
-    double n, a, b, x, y;
-    cin >> n >> a >> b >> x >> y;
-    if (n>b) {
-        cout << (100-y)/100*n <<endl;
-    } else if (n>a) {
-        cout << (100-x)/100*n <<endl;
-    } else {
-        cout << n << endl;
+    int a, b;
+    cin >> a >> b;
+    for (int i=a;i<=b;i++) {
+        if (i % 2 == 0) {
+            cout << i << " ";
+        }
     }
     return 0;
 }
