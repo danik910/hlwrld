@@ -17,11 +17,14 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     int a,b;
     cin >> a >> b;
-        for (int i=a*(a<b)+b*(a>=b);i>=1;--i) {
-            if ((b % i==0) && (a % i==0)) {
-                cout << i << endl;
-                break;
-            }
-        }
+    while (a>0 && b>0) {
+    if (a>b) {
+        a = a % b;
+    }
+    else {
+        b = b % a;
+    }
+    }
+    cout << a+b;
     return 0;
 }
