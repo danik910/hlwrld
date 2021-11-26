@@ -8,44 +8,26 @@
 #include <iostream>
 #include <vector>
 //#include <map>
-#include <string>
+//#include <string>
 //#include <cmath>
-#include <algorithm>
-#include <chrono>
+//#include <algorithm>
+//#include <chrono>
 using namespace std;
 using namespace std::chrono;
 
 //commit
 
-bool IsPalindrom(string s) {
-    //vector<char> s_letter_by_letter;
-    int len=s.size();
-    int median=len/2;
-    for (int i=0;i<=median;++i) {
-        if (s[i]!=s[len-1-i])
-            return 0;
-    }
-    return 1;
-}
-
-vector<string> PalindromFilter(vector<string> words, int minLength) {
-    vector<string> result;
-    for (auto w:words) {
-        if (IsPalindrom(w) && w.size()>=minLength) {
-            result.push_back(w);
-        }
-    }
-    return result;
+void UpdateIfGreater(int first, int& second) {
+    if (first>second)
+        second=first;
 }
 
 int main(int argc, const char * argv[]) {
-    auto start=steady_clock::now();
-    vector<string> input={"aka","madam","toy","ejwiejwojeoq"};
-    input=PalindromFilter(input, 4);
-    //auto finish=steady_clock::now();
-    for (auto i:input)
-        cout << i << endl;
-    auto finish=steady_clock::now();
-    cout << duration_cast<microseconds>(finish-start).count() << endl;
+    int a,b;
+    while (1) {
+        cin >> a >> b;
+        UpdateIfGreater(a,b);
+        cout << a << " "<< b << endl;
+    }
 }
 
