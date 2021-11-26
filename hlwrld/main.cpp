@@ -15,14 +15,14 @@ using namespace std;
 
 //commit
 int main(int argc, const char * argv[]) {
-    int a, b;
-    cin >> a >> b;
-
-    if (b==0) {
-            cout <<"Impossible"<< endl;
-        } else {
-            cout << a/b << endl;
-        }
-    
+    double n, a, b, x, y;
+    cin >> n >> a >> b >> x >> y;
+    if (n>b) {
+        cout << (100-y)/100*n <<endl;
+    } else if (n>a) {
+        cout << (100-x)/100*n <<endl;
+    } else {
+        cout << n << endl;
+    }
     return 0;
 }
