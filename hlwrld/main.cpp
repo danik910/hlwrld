@@ -8,26 +8,24 @@
 #include <iostream>
 #include <vector>
 //#include <map>
-//#include <string>
+#include <string>
 //#include <cmath>
 //#include <algorithm>
 //#include <chrono>
 using namespace std;
-using namespace std::chrono;
+//using namespace std::chrono;
 
 //commit
 
-void UpdateIfGreater(int first, int& second) {
-    if (first>second)
-        second=first;
+void MoveStrings(vector<string>& source, vector<string>& destination) {
+    for (auto c:source) {
+        destination.push_back(c);
+    }
+    source.clear();
 }
 
+
 int main(int argc, const char * argv[]) {
-    int a,b;
-    while (1) {
-        cin >> a >> b;
-        UpdateIfGreater(a,b);
-        cout << a << " "<< b << endl;
-    }
+
 }
 
