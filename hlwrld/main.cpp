@@ -16,16 +16,24 @@ using namespace std;
 //using namespace std::chrono;
 
 //commit
-
-void MoveStrings(vector<string>& source, vector<string>& destination) {
-    for (auto c:source) {
-        destination.push_back(c);
+void Reverse(vector<int>& v) {
+    int len=v.size();
+    int median=len/2;
+    for (int i=0;i<median;++i) {
+        int tmp=v[i];
+        v[i]=v[len-i-1];
+        v[len-i-1]=tmp;
     }
-    source.clear();
+
 }
 
 
 int main(int argc, const char * argv[]) {
-
+    vector<int> numbers = {1, 5, 3, 4, 2};
+    Reverse(numbers);
+    for (auto n:numbers) {
+        cout << n << " ";
+    }
+    cout<< endl;
 }
 
