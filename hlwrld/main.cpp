@@ -6,7 +6,7 @@
 //
 
 #include <iostream>
-//#include <vector>
+#include <vector>
 //#include <map>
 //#include <string>
 //#include <cmath>
@@ -15,16 +15,15 @@ using namespace std;
 
 //commit
 int main(int argc, const char * argv[]) {
-    int a,b;
-    cin >> a >> b;
-    while (a>0 && b>0) {
-    if (a>b) {
-        a = a % b;
+    int n;
+    vector<bool> result;
+    cin >> n;
+    while (n>0) {
+        result.push_back(n % 2);
+        n = n/2;
     }
-    else {
-        b = b % a;
+    for (int r=result.size();r>0;--r) {
+        cout << result[r-1];
     }
-    }
-    cout << a+b;
-    return 0;
+    cout<<endl;
 }
