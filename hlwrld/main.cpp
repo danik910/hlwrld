@@ -16,28 +16,31 @@ using namespace std;
 //using namespace std::chrono;
 
 //commit
-vector<int> Reversed(const vector<int>& v1) {
-    vector<int> v=v1;
-    int len=v.size();
-    int median=len/2;
-    for (int i=0;i<median;++i) {
-        int tmp=v[i];
-        v[i]=v[len-i-1];
-        v[len-i-1]=tmp;
-    }
-    return v;
-}
 
 
 int main(int argc, const char * argv[]) {
-    vector<int> numbers = {1, 5, 3, 4, 2};
-    vector<int> numbers1=Reversed(numbers);
-    for (auto n:numbers1) {
-        cout << n << " ";
+    int n;
+    cin >> n;
+    vector<int> numbers(n);
+    int mean=0;
+    for (int i=0;i<n;++i) {
+        cin >> numbers[i];
+        mean += numbers[i];
     }
-    cout<< endl;
-    for (auto n:numbers) {
-        cout << n << " ";
+    mean /= n;
+    n = 0;
+    int e=0;
+    vector<int> numbers_exceed(n);
+    for (int i:numbers) {
+        if (i>mean) {
+            numbers_exceed.push_back(n);
+            e++;
+        }
+        n++;
+    }
+    cout << e << endl;
+    for (int i:numbers_exceed) {
+        cout << i << " ";
     }
     cout<< endl;
 }
