@@ -16,32 +16,59 @@ using namespace std;
 //using namespace std::chrono;
 
 //commit
-
+const vector<int> months = {31,28,31,30,31,30,31,31,30,31,30,31};
 
 int main(int argc, const char * argv[]) {
     int n;
     cin >> n;
-    vector<int> numbers(n);
-    int mean=0;
-    for (int i=0;i<n;++i) {
-        cin >> numbers[i];
-        mean += numbers[i];
-    }
-    mean /= n;
-    n = 0;
-    int e=0;
-    vector<int> numbers_exceed(n);
-    for (int i:numbers) {
-        if (i>mean) {
-            numbers_exceed.push_back(n);
-            e++;
+    string command;
+    int i;
+    string s;
+    vector<string> queue(31);
+    vector<int> nums(31);
+    vector<string> output;
+    vector<int> numout;
+    int next_month;
+    //vector<int> count_vec;
+    int month=0;
+    for (int m=0;m<n;m++) {
+        cin>>command;
+        if (command=="ADD") {
+            cin>>i;
+            cin>>s;
+            if (nums[i-1]>0)
+                queue[i-1]=queue[i-1] + " " + s;
+            else
+                queue[i-1]=queue[i-1] + s;
+            nums[i-1]++;
         }
-        n++;
+        else if (command=="DUMP") {
+            cin>>i;
+            output.push_back(queue[i-1]);
+            numout.push_back(nums[i-1]);
+        }
+        else if (command=="NEXT") {
+            //queue_int=queue;
+            if (month==11)
+                next_month=0;
+            else
+                next_month=month+1;
+            for (int v=months[next_month]; v<months[month]; v++){
+                if (nums[months[next_month]-1]>0)
+                    queue[months[next_month]-1] += (" " + queue[v]);
+                else
+                    queue[months[next_month]-1] += (queue[v]);
+                nums[months[next_month]-1] += nums[v];
+            }
+            queue.resize(months[next_month]);
+            nums.resize(months[next_month]);
+            month=next_month;
+        }
     }
-    cout << e << endl;
-    for (int i:numbers_exceed) {
-        cout << i << " ";
+    int m=0;
+    for (auto numer:numout) {
+        cout << numout[m] << " " << output[m] << endl;
+        m++;
     }
-    cout<< endl;
 }
 
