@@ -42,58 +42,29 @@ cout << endl;
 
 int main(int argc, const char * argv[]) {
     
-    map<string, vector<string>> buses;
-    map<string, vector<string>> stops;
+    map<vector<string>, int> buses;
     string command;
-    string country;
-    string new_capital;
-    string old_capital;
-    string old_country_name, new_country_name;
-
+    vector<string> stops;
     
-    int n;
+    int n,m;
     cin >> n;
-    int stop_count;
-    string bus;
+
+    int bus=0;
     string stop;
     for (int i=0;i<n;i++) {
-        cin >> command;
-        if (command=="NEW_BUS") { //NEW_BUS bus stop_count stop1 stop2 .
-            cin >> bus;
-            cin >> stop_count;
-            for (int j=0;j<stop_count;j++) {
-                cin >> stop;
-                buses[bus].push_back(stop);
-                stops[stop].push_back(bus);
-            }
-        } else if (command=="BUSES_FOR_STOP") {
+        cin >> m;
+        stops.clear();
+        for (int j=0;j<m;j++) {
             cin >> stop;
-            if (stops.count(stop)>0) {
-            Toilets_for_shit(stops[stop]);
-            }
-            else
-                cout << "No stop" << endl;
-        } else if (command=="STOPS_FOR_BUS") {
-            cin >> bus;
-            if (buses.count(bus)>0) {
-                for (auto& b:buses[bus]) {
-                cout << "Stop " << b << ": ";
-                   Buses_for_stop(stops[b], bus);
-                }
-            
-            }
-            else
-                cout << "No bus" << endl;
-        } else {
-            if (!buses.empty())
-            for (const auto& b : buses) {
-                cout << "Bus " << b.first << ": ";
-                Toilets_for_shit(buses[b.first]);
-            }
-            else
-                cout << "No buses" << endl;
-                
+            stops.push_back(stop);
         }
+        if (buses.count(stops)==0) {
+            buses[stops]=++bus;
+            cout << "New bus " << bus << endl;
+        }
+        else
+            cout << "Already exists for " << buses[stops] << endl;
+
     }
 }
 
