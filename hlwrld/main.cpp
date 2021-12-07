@@ -23,10 +23,27 @@ for (auto j: countries)
 cout << endl;
 }
 
+void Toilets_for_shit(const vector<string>& toilets_shit) {
+for (auto j: toilets_shit)
+    cout << j << ' ';
+cout << endl;
+}
+
+void Buses_for_stop(const vector<string>& toilets_shit, string exclusion) {
+    if (toilets_shit.size()>1) {
+for (auto j: toilets_shit)
+    if (j!=exclusion)
+        cout << j << ' ';
+    }
+    else
+        cout << "no interchange";
+cout << endl;
+}
 
 int main(int argc, const char * argv[]) {
     
-    map<string, string> countries;
+    map<string, vector<string>> buses;
+    map<string, vector<string>> stops;
     string command;
     string country;
     string new_capital;
@@ -36,50 +53,47 @@ int main(int argc, const char * argv[]) {
     
     int n;
     cin >> n;
-    
+    int stop_count;
+    string bus;
+    string stop;
     for (int i=0;i<n;i++) {
         cin >> command;
-        if (command=="CHANGE_CAPITAL") {
-            cin >> country >> new_capital;
-            if (countries.count(country)==0) {
-            countries[country]=new_capital;
-            cout << "Introduce new country " << country << " with capital " << new_capital << endl;
-            } else if (countries[country]==new_capital) {
-            cout << "Country " << country << " hasn't changed its capital" << endl;
-            } else {
-                old_capital=countries[country];
-                countries[country]=new_capital;
-                cout << "Country " << country << " has changed its capital from " << old_capital << " to " << new_capital << endl;
+        if (command=="NEW_BUS") { //NEW_BUS bus stop_count stop1 stop2 .
+            cin >> bus;
+            cin >> stop_count;
+            for (int j=0;j<stop_count;j++) {
+                cin >> stop;
+                buses[bus].push_back(stop);
+                stops[stop].push_back(bus);
             }
-            
-        } else if (command=="RENAME") {
-            cin >> old_country_name >> new_country_name;
-            
-            
-            // если запрос корректен и страна имеет столицу capital.
-            if (countries.count(old_country_name)!=0 && countries.count(new_country_name)==0 && old_country_name != new_country_name ) {
-                countries[new_country_name]=countries[old_country_name];
-                countries.erase(old_country_name);
-                cout << "Country " << old_country_name << " with capital " << countries[new_country_name] << " has been renamed to " << new_country_name << endl;
+        } else if (command=="BUSES_FOR_STOP") {
+            cin >> stop;
+            if (stops.count(stop)>0) {
+            Toilets_for_shit(stops[stop]);
             }
-            else {
-            // если новое название страны совпадает со старым, страна old_country_name не существует или страна new_country_name уже существует;
-                cout << "Incorrect rename, skip" << endl;
-            }
-        } else if (command=="ABOUT"){
-            cin >> country;
-            if (countries.count(country)==0)
-                cout << "Country " << country << " doesn't exist" << endl;
             else
-                cout << "Country " << country << " has capital " << countries[country] << endl;
-        } else { //"DUMP"
-            if (countries.empty())
-            cout << "There are no countries in the world" << endl;
-            else {
-                PrintMap(countries);
+                cout << "No stop" << endl;
+        } else if (command=="STOPS_FOR_BUS") {
+            cin >> bus;
+            if (buses.count(bus)>0) {
+                for (auto& b:buses[bus]) {
+                cout << "Stop " << b << ": ";
+                   Buses_for_stop(stops[b], bus);
+                }
+            
             }
+            else
+                cout << "No bus" << endl;
+        } else {
+            if (!buses.empty())
+            for (const auto& b : buses) {
+                cout << "Bus " << b.first << ": ";
+                Toilets_for_shit(buses[b.first]);
+            }
+            else
+                cout << "No buses" << endl;
+                
         }
-    
     }
 }
 
