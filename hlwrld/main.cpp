@@ -14,24 +14,33 @@
 //#include <cmath>
 #include <algorithm>
 //#include <chrono>
+#include <ctype.h>
 using namespace std;
 //using namespace std::chrono;
 
 //commit
+string Tolower(string& s) {
+    for (auto& j:s) {
+        j=(char)tolower(j);
+    }
+    return s;
+}
 
 
 int main(int argc, const char * argv[]) {
-    int m, j;
-    vector<int> s;
+    int m;
+    string j;
+    vector<string> s;
     cin >> m;
     for (int i=0;i<m;i++) {
         cin >> j;
         s.push_back(j);
     }
-    sort(begin(s),end(s),[](int x, int y){ return abs(x)<abs(y);});
+    sort(begin(s),end(s),[](string x, string y){ return Tolower(x)<Tolower(y);});
     for (auto& j:s) {
         cout << j << " ";
     }
     cout << endl;
+
 }
 
