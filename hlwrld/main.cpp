@@ -18,29 +18,43 @@
 using namespace std;
 //using namespace std::chrono;
 
-//commit
-string Tolower(string& s) {
-    for (auto& j:s) {
-        j=(char)tolower(j);
-    }
-    return s;
-}
 
+class SortedStrings {
+public:
+  void AddString(const string& s) {
+      set_of_strings.push_back(s);
+      
+      // добавить строку s в набор
+  }
+  vector<string> GetSortedStrings() {
+      sort(begin(set_of_strings),end(set_of_strings));
+// получить набор из всех добавленных строк в отсортированном порядке
+    return set_of_strings;
+  }
+private:
+    vector<string> set_of_strings;
+  // приватные поля
+};
+
+
+
+    void PrintSortedStrings(SortedStrings& strings) {
+      for (const string& s : strings.GetSortedStrings()) {
+        cout << s << " ";
+      }
+      cout << endl;
+    }
 
 int main(int argc, const char * argv[]) {
-    int m;
-    string j;
-    vector<string> s;
-    cin >> m;
-    for (int i=0;i<m;i++) {
-        cin >> j;
-        s.push_back(j);
+      SortedStrings strings;
+      
+      strings.AddString("first");
+      strings.AddString("third");
+      strings.AddString("second");
+      PrintSortedStrings(strings);
+      
+      strings.AddString("second");
+      PrintSortedStrings(strings);
+      
+      return 0;
     }
-    sort(begin(s),end(s),[](string x, string y){ return Tolower(x)<Tolower(y);});
-    for (auto& j:s) {
-        cout << j << " ";
-    }
-    cout << endl;
-
-}
-
