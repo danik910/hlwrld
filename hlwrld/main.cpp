@@ -101,39 +101,42 @@ private:
     //string last_last_name="", last_first_name="";
     };
 
+class ReversibleString {
+    public:
+    ReversibleString() {};
+    ReversibleString(const string& str) {
+        strong=str;
+    }
+    void Reverse() {
+        string tmp=strong;
+        int t=strong.size();
+        for (int i=0;i<t;i++) {
+            strong[i]=tmp[t-i-1];
+        }
+    }
+    string ToString() const {
+        return strong;
+    }
+    private:
+    string strong;
+};
+                 //хранящий строку и поддерживающий методы Reverse для переворота строки и ToString для получения строки.
+
+
+
+
 int main() {
-  Person person;
+  ReversibleString s("live");
+  s.Reverse();
+  cout << s.ToString() << endl;
   
-  person.ChangeFirstName(1965, "Polina");
-  person.ChangeLastName(1967, "Sergeeva");
-  for (int year : {1900, 1965, 1990}) {
-    cout << person.GetFullNameWithHistory(year) << endl;
-  }
+  s.Reverse();
+  const ReversibleString& s_ref = s;
+  string tmp = s_ref.ToString();
+  cout << tmp << endl;
   
-  person.ChangeFirstName(1970, "Appolinaria");
-  for (int year : {1969, 1970}) {
-    cout << person.GetFullNameWithHistory(year) << endl;
-  }
-  
-  person.ChangeLastName(1968, "Volkova");
-  for (int year : {1969, 1970}) {
-    cout << person.GetFullNameWithHistory(year) << endl;
-  }
-  
-  person.ChangeFirstName(1990, "Polina");
-  person.ChangeLastName(1990, "Volkova-Sergeeva");
-  cout << person.GetFullNameWithHistory(1990) << endl;
-  
-  person.ChangeFirstName(1966, "Pauline");
-  cout << person.GetFullNameWithHistory(1966) << endl;
-  
-  person.ChangeLastName(1960, "Sergeeva");
-  for (int year : {1960, 1967}) {
-    cout << person.GetFullNameWithHistory(year) << endl;
-  }
-  
-  person.ChangeLastName(1961, "Ivanova");
-  cout << person.GetFullNameWithHistory(1967) << endl;
+  ReversibleString empty;
+  cout << '"' << empty.ToString() << '"' << endl;
   
   return 0;
 }
