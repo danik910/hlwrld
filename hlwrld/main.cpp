@@ -19,42 +19,67 @@ using namespace std;
 //using namespace std::chrono;
 
 
-class SortedStrings {
+class Person {
 public:
-  void AddString(const string& s) {
-      set_of_strings.push_back(s);
-      
-      // добавить строку s в набор
+  void ChangeFirstName(int year, const string& first_name) {
+      name[year]=first_name;
+    // добавить факт изменения имени на first_name в год year
   }
-  vector<string> GetSortedStrings() {
-      sort(begin(set_of_strings),end(set_of_strings));
-// получить набор из всех добавленных строк в отсортированном порядке
-    return set_of_strings;
+  void ChangeLastName(int year, const string& last_name) {
+      surname[year]=last_name;// добавить факт изменения фамилии на last_name в год year
+  }
+  string GetFullName(int year) {
+      string full_name, full_surname;
+      bool name_valid=false, surname_valid=false;
+      for (auto& n:name) {
+          if (n.first>year)
+              break;
+          full_name=n.second;
+          name_valid=true;
+      }
+      for (auto& n:surname) {
+          if (n.first>year)
+              break;
+          full_surname=n.second;
+          surname_valid=true;
+      }
+      if (!surname_valid && !name_valid) {
+          return "Incognito";
+      } else if (!surname_valid && name_valid) {
+          return full_name + " with unknown last name";
+      } else if (surname_valid && !name_valid) {
+          return full_surname + " with unknown first name";
+      } else {
+          full_name+=' ';
+          full_name+=full_surname;
+          return full_name;
+      }
+    // получить имя и фамилию по состоянию на конец года year
   }
 private:
-    vector<string> set_of_strings;
   // приватные поля
-};
-
-
-
-    void PrintSortedStrings(SortedStrings& strings) {
-      for (const string& s : strings.GetSortedStrings()) {
-        cout << s << " ";
-      }
-      cout << endl;
-    }
+    map<int, string> surname;
+    map<int, string> name;
+    };
 
 int main(int argc, const char * argv[]) {
-      SortedStrings strings;
+
+      Person person;
       
-      strings.AddString("first");
-      strings.AddString("third");
-      strings.AddString("second");
-      PrintSortedStrings(strings);
+      person.ChangeFirstName(1965, "Polina");
+      person.ChangeLastName(1967, "Sergeeva");
+      for (int year : {1900, 1965, 1990}) {
+        cout << person.GetFullName(year) << endl;
+      }
       
-      strings.AddString("second");
-      PrintSortedStrings(strings);
+      person.ChangeFirstName(1970, "Appolinaria");
+      for (int year : {1969, 1970}) {
+        cout << person.GetFullName(year) << endl;
+      }
       
-      return 0;
+      person.ChangeLastName(1968, "Volkova");
+      for (int year : {1969, 1970}) {
+        cout << person.GetFullName(year) << endl;
+      }
+      
     }
