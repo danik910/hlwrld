@@ -18,54 +18,39 @@ using namespace std;
 //using namespace std::chrono;
 
 //commit
-void PrintMap(const map<string, string>& countries) {
-for (auto j: countries)
-    cout << j.first << '/' << j.second << ' ';
-cout << endl;
-}
 
-void Toilets_for_shit(const vector<string>& toilets_shit) {
-for (auto j: toilets_shit)
-    cout << j << ' ';
-cout << endl;
-}
-
-void Buses_for_stop(const vector<string>& toilets_shit, string exclusion) {
-    if (toilets_shit.size()>1) {
-for (auto j: toilets_shit)
-    if (j!=exclusion)
-        cout << j << ' ';
-    }
-    else
-        cout << "no interchange";
-cout << endl;
-}
 
 int main(int argc, const char * argv[]) {
-    
-    map<set<string>, int> buses;
+    map<string,set<string>> synonyms;
     string command;
-    set<string> stops;
-    
-    int n,m;
-    cin >> n;
-
-    int bus=0;
-    string stop;
-    for (int i=0;i<n;i++) {
-        cin >> m;
-        stops.clear();
-        for (int j=0;j<m;j++) {
-            cin >> stop;
-            stops.insert(stop);
+    string word;
+    int m;
+    string s1, s2;
+    cin >> m;
+    for (int i=0;i<m;i++) {
+        cin >> command;
+        if (command=="ADD") {
+            cin >> s1 >> s2;
+            //set<string> pair={s1,s2};
+            synonyms[s1].insert(s2);
+            synonyms[s2].insert(s1);
+        } else if (command=="COUNT"){
+            cin >> word;
+            //int v=0;
+            //for (auto& j:synonyms) {
+            //    if (j.count(word)>0)
+            //        v++;
+            //}
+            cout << synonyms[word].size() << endl;
+        } else {
+            cin >> s1 >> s2;
+            set<string> pair={s1,s2};
+            if (synonyms[s1].count(s2)>0)
+                cout << "YES" << endl;
+            else
+                cout << "NO" << endl;
         }
-        if (buses.count(stops)==0) {
-            buses[stops]=++bus;
-            cout << "New bus " << bus << endl;
-        }
-        else
-            cout << "Already exists for " << buses[stops] << endl;
-
     }
+
 }
 
